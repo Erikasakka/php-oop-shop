@@ -1,17 +1,19 @@
-<html>
-
-<head>
-  <title>
-    Products list
-  </title>
-</head>
-
-
 <?php
 
 //require_once('./classes/Product.php');
 //TODO: add products list page
 $products = Product::getProducts('./data/products.json');
+
+
+
+<html>
+  <head>
+    <title>
+      Products list
+    </title>
+  </head>
+
+
 require_once('./classes/Product.php');
 $products = [];
 for ($i = 0; $i < 5; $i++) {

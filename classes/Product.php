@@ -5,37 +5,44 @@ require_once dirname(__FILE__) . '/../support/FileReader.php';
 class Product
 {
     // TODO: add missing parameters
-    public $id;
-    public $maker;
-    public $images;
-    public $url;
     public $title;
-    public $description;
+    public $id;
+    public $images;
     public $price;
     public $ratings;
+    public $maker;
+    public $description;
+    public $url;
 
-    public function __construct(int $id, mixed $maker, array $images, mixed $url, string $title, mixed $description, float $price, mixed $ratings)
+    public function __construct($title, $price, $id, $images, $ratings, $url, $description, $maker)
     {
         //TODO: finish __construct()
-        $this->id = $id;
-        $this->maker = $maker;
-        $this->images = $images;
-        $this->url = $url;
         $this->title = $title;
-        $this->description = $description;
         $this->price = $price;
+        $this->id = $id;
+        $this->images = $images;
         $this->ratings = $ratings;
+        $this->url = $url;
+        $this->description = $description;
+        $this->maker = $maker;
     }
 
-    public static function find($id)
+    public static function find($id): Product
     {
         // How to load data:
-        $content = Product::getProducts('./data/products.json');
 
+        $content = Product::getProducts('./data/products.json');
+        if(isset($_GET['id'])) {
+            return $content;
+        }
+        else {
+
+            echo "Failed";
+        }
         // TODO: check if given product exists, if exists return as object else return false
     }
 
-    public static function getProducts($path)
+    public static function getProducts($path): array
     {
         $content = FileReader::readJsonFile($path, true);
 
@@ -46,7 +53,8 @@ class Product
         }
 
         foreach ($content as $product) {
-            $products[] = new static($product['title']);
+            $products[] = new static($product['title'], $product['price'], $product['id'], 
+            $product['images'], $product['ratings'], $product['url'], $product['description'], $product['maker']);
         }
 
         return $products;
