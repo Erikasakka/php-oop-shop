@@ -1,3 +1,11 @@
+<?php
+
+require_once('./classes/Product.php');
+//TODO: add products list page
+$products = Product::getProducts('./data/products.json');
+
+?>
+
 <html>
 
 <head>
@@ -7,36 +15,11 @@
 </head>
 
 
-<?php
-
-//require_once('./classes/Product.php');
-//TODO: add products list page
-$products = Product::getProducts('./data/products.json');
-require_once('./classes/Product.php');
-$products = [];
-for ($i = 0; $i < 5; $i++) {
-  $images = [
-    'https://picsum.photos/200',
-    'https://picsum.photos/200'
-  ];
-  $products[] = new Product(
-    id;
-    maker;
-    images;
-    url;
-    title;
-    description;
-    price;
-    ratings;
-    title: 'product_name_' . $i,
-    price: rand(1, 100),
-    images: $images
-  );
-}
-?>
-
-
 <div>
+  <form method="get" action="product.php">
+    <input type="text" name="id" />
+    <button type="submit">Find</button>
+  </form>
   <?php foreach ($products as $product) : ?>
     <div>
       <h3>
@@ -46,14 +29,13 @@ for ($i = 0; $i < 5; $i++) {
         <?php echo $product->price; ?> Eur
       </span>
       <div>
-        <?php foreach ($product->images as $image) : ?>
-          <img src="<?php echo $image ?>">
-        <?php endforeach; ?>
+        <img src="<?php echo $product->images[0] ?>">
       </div>
     </div>
   <?php endforeach; ?>
 </div>
 
 <body>
+</body>
 
 </html>
