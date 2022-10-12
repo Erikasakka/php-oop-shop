@@ -22,7 +22,7 @@ class Product
         string $title,
         string $description,
         float $price,
-        array $ratings
+        ?array $ratings
     ) {
         //TODO: finish __construct()
         $this->id = $id;

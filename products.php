@@ -31,6 +31,23 @@ $products = Product::getProducts('./data/products.json');
       <div>
         <img src="<?php echo $product->images[0] ?>">
       </div>
+      <h3>
+        <?php echo $product->id; ?>
+      </h3>
+      <h3>
+        <i>
+          <?php echo $product->maker; ?>
+        </i>
+      </h3>
+      <div>
+        <?php echo $product->ratings ?> Rating
+      </div>
+      <p>
+        <?php echo $produc->description ?>
+      </p>
+      <h3>
+        <?php echo $product->url; ?>
+      </h3>
     </div>
   <?php endforeach; ?>
 </div>
